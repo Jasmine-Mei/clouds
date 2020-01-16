@@ -25,7 +25,7 @@
     },
     "explorer.confirmDragAndDrop": false,
     "terminal.integrated.rendererType": "dom",
-    "window.zoomLevel": -2,
+    "window.zoomLevel": -1,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
