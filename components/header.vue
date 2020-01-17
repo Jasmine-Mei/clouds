@@ -13,9 +13,25 @@
         <nuxt-link to="/air">国内机票</nuxt-link>
       </div>
       <!-- 登录/注册 -->
-      <div class="login">
+      <div class="login" v-if="!$store.state.user.userInfo.token">
         <nuxt-link to="/user/login">登录/注册</nuxt-link>
       </div>
+      <el-dropdown v-else>
+        <span class="el-dropdown-link">
+          <img
+            :src="
+              $axios.defaults.baseURL +
+                $store.state.user.userInfo.user.defaultAvatar
+            "
+          />
+          {{ $store.state.user.userInfo.user.nickname }}
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>个人中心</el-dropdown-item>
+          <el-dropdown-item>退出</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </el-row>
   </div>
 </template>
@@ -25,6 +41,14 @@ export default {};
 </script>
 
 <style scoped lang="less">
+.el-dropdown-link {
+  img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50px;
+    vertical-align: middle;
+  }
+}
 .header-wrapper {
   height: 60px;
   background: #fff;
@@ -47,8 +71,19 @@ export default {};
     flex: 1;
     margin-left: 20px;
   }
-  .navs,
   .login {
+    line-height: 60px;
+    a {
+      display: inline-block;
+      height: 60px;
+      box-sizing: border-box;
+      padding: 0 15px;
+      &:hover {
+        color: #409eff;
+      }
+    }
+  }
+  .navs {
     line-height: 60px;
     a {
       display: inline-block;
